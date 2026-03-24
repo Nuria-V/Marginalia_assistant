@@ -1,0 +1,29 @@
+# =============================================================================
+# requirements.txt
+# Marginalia — Your literary assistant
+# Streamlit Cloud deployment — CPU-only torch to reduce build size
+# =============================================================================
+
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+# --- Frontend ----------------------------------------------------------------
+streamlit>=1.35.0
+
+# --- NLP / Embeddings --------------------------------------------------------
+sentence-transformers>=2.7.0
+transformers>=4.41.0
+torch==2.3.1+cpu
+tokenizers>=0.19.0
+
+# --- ML ----------------------------------------------------------------------
+scikit-learn>=1.5.0
+
+# --- Data --------------------------------------------------------------------
+pandas>=2.0.0
+numpy>=1.24.0,<2.0.0
+
+# --- AI / RAG ----------------------------------------------------------------
+openai>=1.30.0
+
+# --- HF Hub (artifact download at startup) -----------------------------------
+huggingface-hub>=0.23.0
