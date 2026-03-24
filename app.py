@@ -625,7 +625,10 @@ def main():
     # Subsequent interactions: instant (served from @st.cache_resource).
 
     artifacts = load_artifacts()
-    rag       = load_rag_engine()
+    # DEBUG TEMPORAL — borrar después del deploy
+    import glob
+    st.write("Archivos en DATA_DIR:", glob.glob("/tmp/literary_data/**", recursive=True))
+    rag = load_rag_engine()
 
     # ------------------------------------------------------------------
     # SIDEBAR
