@@ -69,6 +69,7 @@ ARTIFACT_FILES = [
     "tfidf_matrix.pkl",
     "tfidf_vectorizer.pkl",
     "user_notes_clustered.csv",
+    "books_clean.csv",
 ]
 
 # Local directory where downloaded files are cached inside the HF Space.
