@@ -1,18 +1,14 @@
 # =============================================================================
 # requirements.txt
 # Marginalia — Your literary assistant
-# Streamlit Cloud deployment — CPU-only torch to reduce build size
 # =============================================================================
-
---extra-index-url https://download.pytorch.org/whl/cpu
-
 # --- Frontend ----------------------------------------------------------------
 streamlit>=1.35.0
 
 # --- NLP / Embeddings --------------------------------------------------------
 sentence-transformers>=2.7.0
 transformers>=4.41.0
-torch==2.3.1+cpu
+torch>=2.9.0
 tokenizers>=0.19.0
 
 # --- ML ----------------------------------------------------------------------
