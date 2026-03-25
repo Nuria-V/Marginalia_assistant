@@ -222,11 +222,14 @@ hr {
     background-color: var(--ochre) !important;
 }
 
-/* --- Logo banner background --- */
+/* --- Logo banner --- */
 [data-testid="stImage"] {
     background-color: #E8DCB9 !important;
-    padding: 16px 24px !important;
-    border-radius: 6px !important;
+    padding: 20px 40px !important;
+}
+[data-testid="stImage"] img {
+    display: block !important;
+    margin: 0 auto !important;
 }
 
 </style>
