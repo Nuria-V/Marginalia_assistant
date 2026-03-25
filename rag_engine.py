@@ -54,6 +54,7 @@ class RAGEngine:
         self.reader_profile     = self._load_pickle("reader_profile.pkl")
         self.df_notas = pd.read_csv(os.path.join(self.drive_path, "user_notes_clustered.csv"))
         self.df_catalog = pd.read_csv(os.path.join(self.drive_path, "books_clean.csv"))
+        logger.info("Catalog columns: %s", self.df_catalog.columns.tolist())  # DEBUG
         self.titles_read = set(self.df_notas["title"].str.lower().str.strip().tolist())
         logger.info("Data loaded. Notes: %d | Catalog: %d", len(self.df_notas), len(self.df_catalog))
 
