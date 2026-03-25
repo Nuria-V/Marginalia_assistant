@@ -248,6 +248,7 @@ ARTIFACT_FILES = [
     "tfidf_vectorizer.pkl",
     "user_notes_clustered.csv",
     "books_clean.csv",  # catalog
+    "marginalia_logo_1_.png",  # logo
 ]
 
 # Local directory where downloaded files are cached inside the HF Space.
@@ -825,6 +826,14 @@ def main():
     artifacts = load_artifacts()
     rag = load_rag_engine()
 
+    # ------------------------------------------------------------------
+    # Logo banner
+    # ------------------------------------------------------------------
+    logo_path = os.path.join(DATA_DIR, "marginalia_logo_1_.png")
+    if os.path.exists(logo_path):
+        st.image(logo_path, width=380)
+        st.markdown("<br>", unsafe_allow_html=True)
+    
     # ------------------------------------------------------------------
     # SIDEBAR
     # ------------------------------------------------------------------
