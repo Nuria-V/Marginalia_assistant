@@ -248,7 +248,6 @@ ARTIFACT_FILES = [
     "tfidf_vectorizer.pkl",
     "user_notes_clustered.csv",
     "books_clean.csv",  # catalog
-    "marginalia_logo.png",  # logo
 ]
 
 # Local directory where downloaded files are cached inside the HF Space.
@@ -829,7 +828,15 @@ def main():
     # ------------------------------------------------------------------
     # Logo banner
     # ------------------------------------------------------------------
-    logo_path = os.path.join(DATA_DIR, "marginalia_logo_1_.png")
+    logo_path = os.path.join(DATA_DIR, "marginalia_logo.png")
+    if not os.path.exists(logo_path):
+        hf_hub_download(
+            repo_id=HF_DATASET_REPO,
+            filename="marginalia_logo.png",
+            repo_type="dataset",
+            token=HF_TOKEN,
+            local_dir=DATA_DIR,
+        )
     if os.path.exists(logo_path):
         st.image(logo_path, width=380)
         st.markdown("<br>", unsafe_allow_html=True)
