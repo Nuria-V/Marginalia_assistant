@@ -370,7 +370,10 @@ def render_sidebar(artifacts: dict):
 
     with st.sidebar:
         st.markdown("## Your Reading Profile")
-        st.markdown("*Built from your personal notes — Phases 1–4*")
+        st.markdown(
+            "*Built from your reading notes — your words, emotions, "
+            "and ideas distilled into a portrait of who you are as a reader.*"
+        )
         st.divider()
 
         for key, cluster in reader_profile.items():
