@@ -364,8 +364,13 @@ def render_sidebar(artifacts: dict):
     Visible on all tabs simultaneously.
     """
     reader_profile = artifacts["reader_profile"]
-    bg_colors = ["#2D4A2D", "#3A5C3A"]
-
+    bg_map = {
+        0: "#1E3320",   # forest green oscuro
+        1: "#7A5518",   # ochre oscuro
+        2: "#4A4E5E",   # slate oscuro
+        3: "#6B6B52",   # khaki oscuro
+    }
+    
     clusters_html = ""
     for i, (key, cluster) in enumerate(reader_profile.items()):
         cid    = cluster["cluster_id"]
@@ -373,7 +378,7 @@ def render_sidebar(artifacts: dict):
         books  = cluster.get("books", [])
         words  = cluster.get("top_words", [])[:5]
         rating = cluster.get("avg_rating", "-")
-        bg     = bg_colors[i % 2]
+        bg     = bg_map.get(cid, "#2D4A2D")
 
         books_str = " · ".join(books) if books else ""
         tags_str  = "".join(
