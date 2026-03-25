@@ -830,28 +830,17 @@ def main():
     # Logo banner
     # ------------------------------------------------------------------
     logo_path = os.path.join(DATA_DIR, "marginalia_logo.png")
-    if not os.path.exists(logo_path):
-        hf_hub_download(
-            repo_id=HF_DATASET_REPO,
-            filename="marginalia_logo.png",
-            repo_type="dataset",
-            token=HF_TOKEN,
-            local_dir=DATA_DIR,
-        )
-    if os.path.exists(logo_path):
-        import base64
-        with open(logo_path, "rb") as f:
-            logo_b64 = base64.b64encode(f.read()).decode()
-        st.markdown(
-            f'<div style="background-color:#E8DCB9;'
-            f'width:100%;margin:0;padding:18px 0;'
-            f'text-align:center;">'
-            f'<img src="data:image/png;base64,{logo_b64}" '
-            f'style="height:90px;object-fit:contain;"/>'
-            f'</div>',
-            unsafe_allow_html=True,
-        )
-        st.markdown("<br>", unsafe_allow_html=True)
+        if not os.path.exists(logo_path):
+            hf_hub_download(
+                repo_id=HF_DATASET_REPO,
+                filename="marginalia_logo.png",
+                repo_type="dataset",
+                token=HF_TOKEN,
+                local_dir=DATA_DIR,
+            )
+        if os.path.exists(logo_path):
+            st.image(logo_path, width=380)
+            st.markdown("<br>", unsafe_allow_html=True)
     
     # ------------------------------------------------------------------
     # SIDEBAR
