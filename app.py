@@ -395,6 +395,7 @@ def render_sidebar(artifacts: dict):
             f'<div style="background:{bg};border-radius:6px;'
             f'padding:10px 12px;margin-bottom:8px;">'
             f'<div style="color:#F0EBE0;font-weight:700;font-size:0.95em;'
+            f'font-family:\'Playfair Display\',Georgia,serif;'
             f'margin-bottom:5px;">{label}</div>'
             f'<div style="color:#C8D8C8;font-size:0.76em;font-style:italic;'
             f'margin-bottom:6px;">{books_str}</div>'
