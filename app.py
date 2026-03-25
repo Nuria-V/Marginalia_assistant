@@ -360,64 +360,119 @@ def load_notes_manager() -> NotesManager:
 def render_sidebar(artifacts: dict):
     """
     Renders the persistent reader profile panel in the sidebar.
-    Shows the 4 clusters with label, books, theme keywords, and avg rating.
+    Shows the clusters with label, books, theme keywords, and avg rating.
     Visible on all tabs simultaneously.
-
     Args:
         artifacts: dict returned by load_artifacts()
     """
     reader_profile = artifacts["reader_profile"]
-
     with st.sidebar:
         st.markdown("## Your Reading Profile")
-        st.markdown("*Built from your personal notes — Phases 1–4*")
+        st.markdown(
+            "*Built from your reading notes — your words, emotions, and ideas "
+            "distilled into a portrait of who you are as a reader.*"
+        )
         st.divider()
 
-        for key, cluster in reader_profile.items():
+        # Alternating background colors for cluster cards
+        bg_colors = ["#2D4A2D", "#3A5C3A"]
+
+        for i, (key, cluster) in enumerate(reader_profile.items()):
             cid    = cluster["cluster_id"]
-            style  = CLUSTER_STYLE.get(cid, {"color": "#555", "icon": "•"})
+            style  = CLUSTER_STYLE.get(cid, {"color": "#B8B89A", "icon": ""})
             label  = cluster.get("label", f"Cluster {cid}")
             books  = cluster.get("books", [])
             words  = cluster.get("top_words", [])[:5]
             rating = cluster.get("avg_rating", "-")
+            bg     = bg_colors[i % 2]
 
-            # Cluster header with colored icon
-            st.markdown(
-                f"<span style='color:{style['color']}; font-size:1.1em;'>"
-                f"{style['icon']} **{label}**</span>",
-                unsafe_allow_html=True,
-            )
+            # Cluster card with background
+            card_html = f"""
+            <div style='
+                background:{bg};
+                border-radius:6px;
+                padding:10px 12px;
+                margin-bottom:10px;
+            '>
+                <div style='
+                    color:#F0EBE0;
+                    font-weight:700;
+                    font-size:1em;
+                    margin-bottom:6px;
+                '>{label}</div>
+            """
 
-            # Books in this cluster — italic, dot-separated
+            # Books
             if books:
-                st.caption(f"*{' · '.join(books)}*")
+                books_str = " · ".join(books)
+                card_html += f"""
+                <div style='
+                    color:#C8D8C8;
+                    font-size:0.78em;
+                    font-style:italic;
+                    margin-bottom:6px;
+                '>{books_str}</div>
+                """
 
-            # Theme keywords as inline colored tags.
-            # Color hex + "22" = ~13% opacity background (alpha channel in hex).
+            # Theme tags
             if words:
-                tags_html = " ".join(
+                tags_html = "".join(
                     f"<span style='"
-                    f"background:{style['color']}22;"
-                    f"color:{style['color']};"
-                    f"border:1px solid {style['color']}55;"
+                    f"background:#FFFFFF22;"
+                    f"color:#F0EBE0;"
+                    f"border:1px solid #FFFFFF44;"
                     f"border-radius:4px;"
                     f"padding:1px 7px;"
-                    f"font-size:0.75em;"
+                    f"font-size:0.72em;"
                     f"margin:2px;"
                     f"display:inline-block;'>"
                     f"{w}</span>"
                     for w in words
                 )
-                st.markdown(tags_html, unsafe_allow_html=True)
+                card_html += f"<div style='margin-bottom:6px;'>{tags_html}</div>"
 
-            st.caption(f"Avg rating: {rating} / 5.0")
-            st.markdown("<br>", unsafe_allow_html=True)
+            # Rating
+            card_html += f"""
+                <div style='
+                    color:#C8B890;
+                    font-size:0.75em;
+                '>Avg rating: {rating} / 5.0</div>
+            </div>
+            """
+
+            st.markdown(card_html, unsafe_allow_html=True)
 
         st.divider()
-        st.caption("40 notes · 9,532 books · K=4 clusters")
-        st.caption("*Marginalia — Tu asistente literario*")
 
-
+        # Stats footer
+        st.markdown("""
+        <div style='
+            text-align:center;
+            padding:8px 0 4px 0;
+        '>
+            <div style='
+                display:flex;
+                justify-content:space-around;
+                margin-bottom:8px;
+            '>
+                <div style='text-align:center;'>
+                    <div style='color:#C8922A; font-weight:700; font-size:1.1em;'>50</div>
+                    <div style='color:#C8D8C8; font-size:0.7em;'>notes</div>
+                </div>
+                <div style='text-align:center;'>
+                    <div style='color:#C8922A; font-weight:700; font-size:1.1em;'>78,811</div>
+                    <div style='color:#C8D8C8; font-size:0.7em;'>books</div>
+                </div>
+                <div style='text-align:center;'>
+                    <div style='color:#C8922A; font-weight:700; font-size:1.1em;'>K=5</div>
+                    <div style='color:#C8D8C8; font-size:0.7em;'>clusters</div>
+                </div>
+            </div>
+            <div style='color:#8A8FA8; font-size:0.72em; font-style:italic;'>
+                Marginalia — your literary assistant
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
 # =============================================================================
 # TAB 1 — RECOMMENDATIONS
 # =============================================================================
