@@ -258,10 +258,11 @@ DATA_DIR = "/tmp/literary_data"
 # across sidebar, recommendation cards, and chat.
 # These are purely cosmetic — they do not affect pipeline logic.
 CLUSTER_STYLE = {
-    0: {"color": "#2D4A2D", "icon": "◈"},   # Political & Speculative  — forest
-    1: {"color": "#C8922A", "icon": "◉"},   # The Individual vs World  — ochre
-    2: {"color": "#8A8FA8", "icon": "◆"},   # Epic & Philosophical     — slate
-    3: {"color": "#B8B89A", "icon": "◇"},   # Radical Self-Consciousness — khaki
+    0: {"color": "#2D4A2D", "icon": "◈"},   # Inner Worlds — forest
+    1: {"color": "#C8922A", "icon": "◈"},   # Speculative Minds — ochre
+    2: {"color": "#8A8FA8", "icon": "◈"},   # Political & Dystopian — slate
+    3: {"color": "#B8B89A", "icon": "◈"},   # The Seeker's Path — khaki
+    4: {"color": "#7A6A4A", "icon": "◈"},   # The Dark & The Strange - warm brown
 }
 
 # Suggested questions shown as clickable buttons above the chat input
@@ -369,6 +370,7 @@ def render_sidebar(artifacts: dict):
         1: "#7A5518",   # ochre oscuro
         2: "#4A4E5E",   # slate oscuro
         3: "#6B6B52",   # khaki oscuro
+        4: "#4A3E2A",   # warm brown oscuro
     }
     
     clusters_html = ""
