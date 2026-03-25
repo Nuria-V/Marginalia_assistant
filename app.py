@@ -45,6 +45,128 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+# =============================================================================
+# CUSTOM THEME — Marginalia palette
+# =============================================================================
+st.markdown("""
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IM+Fell+English:ital@0;1&display=swap');
+
+/* --- Root palette --- */
+:root {
+    --forest:   #2D4A2D;
+    --ochre:    #C8922A;
+    --slate:    #8A8FA8;
+    --khaki:    #B8B89A;
+    --cream:    #F0EBE0;
+    --cream-dk: #E2DAC8;
+    --ink:      #1C2B1C;
+}
+
+/* --- Background --- */
+.stApp {
+    background-color: var(--cream);
+    font-family: 'IM Fell English', Georgia, serif;
+    color: var(--ink);
+}
+
+/* --- Sidebar --- */
+[data-testid="stSidebar"] {
+    background-color: var(--forest) !important;
+}
+[data-testid="stSidebar"] * {
+    color: var(--cream) !important;
+}
+[data-testid="stSidebar"] .stMarkdown p {
+    color: var(--cream) !important;
+}
+
+/* --- Headings --- */
+h1, h2, h3 {
+    font-family: 'Playfair Display', Georgia, serif !important;
+    color: var(--forest) !important;
+}
+h1 { font-size: 2.2rem !important; font-weight: 700 !important; }
+h2 { font-size: 1.5rem !important; }
+h3 { font-size: 1.2rem !important; }
+
+/* --- Buttons --- */
+.stButton > button {
+    background-color: var(--forest) !important;
+    color: var(--cream) !important;
+    border: none !important;
+    border-radius: 3px !important;
+    font-family: 'IM Fell English', Georgia, serif !important;
+    font-size: 0.9rem !important;
+    padding: 0.5rem 1.2rem !important;
+    transition: background-color 0.2s ease !important;
+}
+.stButton > button:hover {
+    background-color: var(--ochre) !important;
+    color: var(--cream) !important;
+}
+
+/* --- Text input & text area --- */
+.stTextInput > div > div > input,
+.stTextArea > div > div > textarea {
+    background-color: var(--cream-dk) !important;
+    border: 1px solid var(--khaki) !important;
+    border-radius: 3px !important;
+    color: var(--ink) !important;
+    font-family: 'IM Fell English', Georgia, serif !important;
+}
+.stTextInput > div > div > input:focus,
+.stTextArea > div > div > textarea:focus {
+    border-color: var(--forest) !important;
+    box-shadow: 0 0 0 1px var(--forest) !important;
+}
+
+/* --- Tabs --- */
+.stTabs [data-baseweb="tab-list"] {
+    background-color: transparent !important;
+    border-bottom: 2px solid var(--khaki) !important;
+    gap: 0 !important;
+}
+.stTabs [data-baseweb="tab"] {
+    font-family: 'Playfair Display', Georgia, serif !important;
+    font-size: 1rem !important;
+    color: var(--forest) !important;
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0.5rem 1.5rem !important;
+}
+.stTabs [aria-selected="true"] {
+    color: var(--ochre) !important;
+    border-bottom: 2px solid var(--ochre) !important;
+}
+
+/* --- Cards / expanders --- */
+.stExpander {
+    background-color: var(--cream-dk) !important;
+    border: 1px solid var(--khaki) !important;
+    border-radius: 4px !important;
+}
+
+/* --- Dividers --- */
+hr {
+    border-color: var(--khaki) !important;
+    opacity: 0.6 !important;
+}
+
+/* --- Chat messages --- */
+[data-testid="stChatMessage"] {
+    background-color: var(--cream-dk) !important;
+    border-radius: 4px !important;
+    border-left: 3px solid var(--forest) !important;
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--khaki); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--forest); }
+</style>
+""", unsafe_allow_html=True)
 
 # =============================================================================
 # CONSTANTS
@@ -80,10 +202,10 @@ DATA_DIR = "/tmp/literary_data"
 # across sidebar, recommendation cards, and chat.
 # These are purely cosmetic — they do not affect pipeline logic.
 CLUSTER_STYLE = {
-    0: {"color": "#C0392B", "icon": "◈"},   # Political & Speculative  — deep red
-    1: {"color": "#1A5276", "icon": "◉"},   # The Individual vs World  — navy
-    2: {"color": "#1E8449", "icon": "◆"},   # Epic & Philosophical     — forest green
-    3: {"color": "#6C3483", "icon": "◇"},   # Radical Self-Consciousness — violet
+    0: {"color": "#2D4A2D", "icon": "◈"},   # Political & Speculative  — forest
+    1: {"color": "#C8922A", "icon": "◉"},   # The Individual vs World  — ochre
+    2: {"color": "#8A8FA8", "icon": "◆"},   # Epic & Philosophical     — slate
+    3: {"color": "#B8B89A", "icon": "◇"},   # Radical Self-Consciousness — khaki
 }
 
 # Suggested questions shown as clickable buttons above the chat input
