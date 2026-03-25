@@ -387,7 +387,7 @@ def render_sidebar(artifacts: dict):
             # Cluster header with colored icon
             st.markdown(
                 f"<span style='color:{style['color']}; font-size:1.1em;'>"
-                f"{style['icon']} **{label}**</span>",
+                f"**{label}**</span>",
                 unsafe_allow_html=True,
             )
 
