@@ -248,7 +248,7 @@ ARTIFACT_FILES = [
     "tfidf_vectorizer.pkl",
     "user_notes_clustered.csv",
     "books_clean.csv",  # catalog
-    "marginalia_logo_1_.png",  # logo
+    "marginalia_logo.png",  # logo
 ]
 
 # Local directory where downloaded files are cached inside the HF Space.
