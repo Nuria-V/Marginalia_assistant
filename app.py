@@ -165,6 +165,62 @@ hr {
 ::-webkit-scrollbar-track { background: var(--cream); }
 ::-webkit-scrollbar-thumb { background: var(--khaki); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--forest); }
+
+/* --- Input labels --- */
+.stTextInput label, 
+.stTextArea label,
+.stSlider label,
+.stDateInput label {
+    color: var(--forest) !important;
+    font-family: 'IM Fell English', Georgia, serif !important;
+    font-size: 0.85rem !important;
+    font-style: italic !important;
+}
+
+/* --- Placeholder text --- */
+::placeholder {
+    color: var(--khaki) !important;
+    opacity: 1 !important;
+}
+
+/* --- Slider — eliminar rojo --- */
+[data-testid="stSlider"] > div > div > div > div {
+    background-color: var(--forest) !important;
+}
+[data-testid="stSlider"] > div > div > div > div > div {
+    background-color: var(--ochre) !important;
+    border-color: var(--ochre) !important;
+}
+
+/* --- Date input --- */
+.stDateInput > div > div > input {
+    background-color: var(--cream-dk) !important;
+    color: var(--ink) !important;
+    border: 1px solid var(--khaki) !important;
+}
+
+/* --- Info / warning / success boxes --- */
+[data-testid="stAlert"] {
+    background-color: var(--cream-dk) !important;
+    border-left: 3px solid var(--forest) !important;
+    color: var(--ink) !important;
+    border-radius: 3px !important;
+}
+[data-testid="stAlert"] p {
+    color: var(--ink) !important;
+}
+
+/* --- Save note button — full width override --- */
+[data-testid="stFormSubmitButton"] > button,
+[data-testid="stBaseButton-secondaryFormSubmit"] > button {
+    background-color: var(--forest) !important;
+    color: var(--cream) !important;
+    width: 100% !important;
+    border-radius: 3px !important;
+}
+[data-testid="stFormSubmitButton"] > button:hover {
+    background-color: var(--ochre) !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
