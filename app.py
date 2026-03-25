@@ -123,17 +123,13 @@ def load_artifacts() -> dict:
         # the same Space instance the files are already in /tmp.
         if not os.path.exists(local_path):
             logger.info("Downloading %s from HF Dataset...", filename)
-            try:
-                hf_hub_download(
-                    repo_id=HF_DATASET_REPO,
-                    filename=filename,
-                    repo_type="dataset",
-                    token=HF_TOKEN,
-                    local_dir=DATA_DIR,
-                )
-            except Exception as e:
-                st.error(f"Failed to download {filename}: {e}")
-                raise
+            hf_hub_download(
+                repo_id=HF_DATASET_REPO,
+                filename=filename,
+                repo_type="dataset",
+                token=HF_TOKEN,
+                local_dir=DATA_DIR,
+            )
             logger.info("Downloaded: %s", filename)
 
         # Load into memory
@@ -629,11 +625,6 @@ def main():
     # Subsequent interactions: instant (served from @st.cache_resource).
 
     artifacts = load_artifacts()
-    # DEBUG TEMPORAL — borrar después del deploy
-    import glob
-    st.write("Archivos en DATA_DIR:", glob.glob("/tmp/literary_data/**", recursive=True))
-    st.write("HF_DATASET_REPO:", HF_DATASET_REPO)
-    st.write("HF_TOKEN present:", bool(HF_TOKEN))
     rag = load_rag_engine()
 
     # ------------------------------------------------------------------
