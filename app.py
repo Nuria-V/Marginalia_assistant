@@ -360,13 +360,65 @@ def load_notes_manager() -> NotesManager:
 def render_sidebar(artifacts: dict):
     """
     Renders the persistent reader profile panel in the sidebar.
-    Shows the 4 clusters with label, books, theme keywords, and avg rating.
+    Shows the clusters with label, books, theme keywords, and avg rating.
     Visible on all tabs simultaneously.
-
-    Args:
-        artifacts: dict returned by load_artifacts()
     """
     reader_profile = artifacts["reader_profile"]
+    bg_colors = ["#2D4A2D", "#3A5C3A"]
+
+    clusters_html = ""
+    for i, (key, cluster) in enumerate(reader_profile.items()):
+        cid    = cluster["cluster_id"]
+        label  = cluster.get("label", f"Cluster {cid}")
+        books  = cluster.get("books", [])
+        words  = cluster.get("top_words", [])[:5]
+        rating = cluster.get("avg_rating", "-")
+        bg     = bg_colors[i % 2]
+
+        books_str = " · ".join(books) if books else ""
+        tags_str  = "".join(
+            f'<span style="background:#FFFFFF22;color:#F0EBE0;'
+            f'border:1px solid #FFFFFF44;border-radius:4px;'
+            f'padding:1px 7px;font-size:0.72em;margin:2px;'
+            f'display:inline-block;">{w}</span>'
+            for w in words
+        )
+
+        clusters_html += (
+            f'<div style="background:{bg};border-radius:6px;'
+            f'padding:10px 12px;margin-bottom:8px;">'
+            f'<div style="color:#F0EBE0;font-weight:700;font-size:0.95em;'
+            f'margin-bottom:5px;">{label}</div>'
+            f'<div style="color:#C8D8C8;font-size:0.76em;font-style:italic;'
+            f'margin-bottom:6px;">{books_str}</div>'
+            f'<div style="margin-bottom:6px;">{tags_str}</div>'
+            f'<div style="color:#C8B890;font-size:0.73em;">'
+            f'Avg rating: {rating} / 5.0</div>'
+            f'</div>'
+        )
+
+    footer_html = (
+        '<div style="border-top:1px solid #4A6A4A;margin-top:8px;'
+        'padding-top:12px;text-align:center;">'
+        '<div style="display:flex;justify-content:space-around;margin-bottom:8px;">'
+        '<div style="text-align:center;">'
+        '<div style="color:#C8922A;font-weight:700;font-size:1.05em;">50</div>'
+        '<div style="color:#C8D8C8;font-size:0.68em;">notes</div>'
+        '</div>'
+        '<div style="text-align:center;">'
+        '<div style="color:#C8922A;font-weight:700;font-size:1.05em;">78,811</div>'
+        '<div style="color:#C8D8C8;font-size:0.68em;">books</div>'
+        '</div>'
+        '<div style="text-align:center;">'
+        '<div style="color:#C8922A;font-weight:700;font-size:1.05em;">K=5</div>'
+        '<div style="color:#C8D8C8;font-size:0.68em;">clusters</div>'
+        '</div>'
+        '</div>'
+        '<div style="color:#8A8FA8;font-size:0.70em;font-style:italic;">'
+        'Marginalia — your literary assistant'
+        '</div>'
+        '</div>'
+    )
 
     with st.sidebar:
         st.markdown("## Your Reading Profile")
@@ -375,50 +427,7 @@ def render_sidebar(artifacts: dict):
             "and ideas distilled into a portrait of who you are as a reader.*"
         )
         st.divider()
-
-        for key, cluster in reader_profile.items():
-            cid    = cluster["cluster_id"]
-            style  = CLUSTER_STYLE.get(cid, {"color": "#555", "icon": "•"})
-            label  = cluster.get("label", f"Cluster {cid}")
-            books  = cluster.get("books", [])
-            words  = cluster.get("top_words", [])[:5]
-            rating = cluster.get("avg_rating", "-")
-
-            # Cluster header with colored icon
-            st.markdown(
-                f"<span style='color:{style['color']}; font-size:1.1em;'>"
-                f"**{label}**</span>",
-                unsafe_allow_html=True,
-            )
-
-            # Books in this cluster — italic, dot-separated
-            if books:
-                st.caption(f"*{' · '.join(books)}*")
-
-            # Theme keywords as inline colored tags.
-            # Color hex + "22" = ~13% opacity background (alpha channel in hex).
-            if words:
-                tags_html = " ".join(
-                    f"<span style='"
-                    f"background:{style['color']}22;"
-                    f"color:{style['color']};"
-                    f"border:1px solid {style['color']}55;"
-                    f"border-radius:4px;"
-                    f"padding:1px 7px;"
-                    f"font-size:0.75em;"
-                    f"margin:2px;"
-                    f"display:inline-block;'>"
-                    f"{w}</span>"
-                    for w in words
-                )
-                st.markdown(tags_html, unsafe_allow_html=True)
-
-            st.caption(f"Avg rating: {rating} / 5.0")
-            st.markdown("<br>", unsafe_allow_html=True)
-
-        st.divider()
-        st.caption("40 notes · 9,532 books · K=4 clusters")
-        st.caption("*Marginalia — Tu asistente literario*")
+        st.markdown(clusters_html + footer_html, unsafe_allow_html=True)
 
 
 # =============================================================================
