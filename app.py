@@ -222,16 +222,6 @@ hr {
     background-color: var(--ochre) !important;
 }
 
-/* --- Logo banner --- */
-[data-testid="stImage"] {
-    background-color: #E8DCB9 !important;
-    padding: 20px 40px !important;
-}
-[data-testid="stImage"] img {
-    display: block !important;
-    margin: 0 auto !important;
-}
-
 </style>
 """, unsafe_allow_html=True)
 
@@ -849,7 +839,18 @@ def main():
             local_dir=DATA_DIR,
         )
     if os.path.exists(logo_path):
-        st.image(logo_path, width=380)
+        import base64
+        with open(logo_path, "rb") as f:
+            logo_b64 = base64.b64encode(f.read()).decode()
+        st.markdown(
+            f'<div style="background-color:#E8DCB9;'
+            f'width:100%;margin:0;padding:18px 0;'
+            f'text-align:center;">'
+            f'<img src="data:image/png;base64,{logo_b64}" '
+            f'style="height:90px;object-fit:contain;"/>'
+            f'</div>',
+            unsafe_allow_html=True,
+        )
         st.markdown("<br>", unsafe_allow_html=True)
     
     # ------------------------------------------------------------------
