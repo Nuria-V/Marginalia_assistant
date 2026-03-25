@@ -221,6 +221,14 @@ hr {
 [data-testid="stFormSubmitButton"] > button:hover {
     background-color: var(--ochre) !important;
 }
+
+/* --- Logo banner background --- */
+[data-testid="stImage"] {
+    background-color: #E8DCB9 !important;
+    padding: 16px 24px !important;
+    border-radius: 6px !important;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
