@@ -578,7 +578,8 @@ def render_chat(rag: RAGEngine):
         "</div>",
         unsafe_allow_html=True,
     )
-
+    st.divider()
+    
     # ------------------------------------------------------------------
     # SESSION STATE INITIALIZATION
     # ------------------------------------------------------------------
