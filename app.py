@@ -711,11 +711,21 @@ def render_add_note():
     """
     st.markdown("## Add a Reading Note")
     st.markdown(
-        "Record your reflections on a book. "
-        "Notes added here feed into future pipeline updates."
+        "Record your thoughts, emotions, and reflections on a book you have read. "
+        "Every note you add enriches your literary profile — the more detail you share, "
+        "the more accurately the system understands your reading identity and refines "
+        "its recommendations for you."
     )
-    st.markdown("<br>", unsafe_allow_html=True)
-
+    st.markdown(
+        "<div style='border-left:3px solid #B8B89A;padding-left:12px;"
+        "margin-top:8px;color:#6B6B52;font-style:italic;font-size:0.9em;'>"
+        "Registra tus pensamientos, emociones y reflexiones sobre un libro que hayas leído. "
+        "Cada nota que añades enriquece tu perfil literario — cuanto más detalle compartas, "
+        "con mayor precisión el sistema comprenderá tu identidad lectora y refinará "
+        "sus recomendaciones para ti."
+        "</div>",
+        unsafe_allow_html=True,
+    )
     nm = load_notes_manager()
 
     # ------------------------------------------------------------------
