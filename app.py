@@ -153,7 +153,10 @@ hr {
     opacity: 0.6 !important;
 }
 
-/* --- Chat messages --- */
+/* --- Chat messages text color --- */
+[data-testid="stChatMessage"] p {
+    color: var(--ink) !important;
+}
 [data-testid="stChatMessage"] {
     background-color: var(--cream-dk) !important;
     border-radius: 4px !important;
