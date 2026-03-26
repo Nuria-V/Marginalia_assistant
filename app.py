@@ -462,8 +462,19 @@ def render_recommendations(artifacts: dict):
         "fingerprint of your cluster against 79,000 titles, surfacing the books most "
         "likely to resonate with how you actually read and what moves you."
     )
-    st.markdown("<br>", unsafe_allow_html=True)
-
+    st.markdown(
+        "<div style='border-left:3px solid #B8B89A;padding-left:12px;"
+        "margin-top:8px;color:#6B6B52;font-style:italic;font-size:0.9em;'>"
+        "A continuación encontrarás los 6 libros más recomendados para cada uno de "
+        "tus clusters de lectura — grupos de libros que comparten patrones emocionales "
+        "y temáticos extraídos de tus notas personales. Cada recomendación fue "
+        "seleccionada comparando la huella semántica de tu cluster contra 79,000 "
+        "títulos, identificando los libros con mayor probabilidad de resonar con tu "
+        "forma de leer y lo que te mueve."
+        "</div>",
+        unsafe_allow_html=True,
+    )
+    
     for cluster_key, rec_list in recommendations.items():
         if not rec_list:
             continue
