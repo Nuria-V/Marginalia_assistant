@@ -523,7 +523,7 @@ def render_recommendations(artifacts: dict):
                 
                     f"<div style='color:{style['color']}; font-size:0.82em; "
                     f"font-style:italic; margin-bottom:6px;'>"
-                    f"{rec.get('author_names', '')}</div>"
+                    f"{str(rec.get('author_names', ''))[:80]}{'...' if len(str(rec.get('author_names', ''))) > 80 else ''}</div>"
                 
                     f"<div style='font-size:0.82em; color:#5A5A4A; margin-bottom:8px; "
                     f"line-height:1.5;'>"
