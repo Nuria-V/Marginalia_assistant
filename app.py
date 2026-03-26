@@ -439,8 +439,20 @@ def render_sidebar(artifacts: dict):
     with st.sidebar:
         st.markdown("## Your Reading Profile")
         st.markdown(
-            "*Built from your reading notes — your words, emotions, "
-            "and ideas distilled into a portrait of who you are as a reader.*"
+            "*Built from your reading notes — your words, emotions, and ideas "
+            "distilled into a portrait of who you are as a reader. "
+            "Each group below shows the books you have already read, "
+            "clustered by the themes and emotions that connect them.*"
+        )
+        st.markdown(
+            "<div style='border-left:3px solid #4A6A4A;padding-left:10px;"
+            "margin-top:6px;color:#C8D8C8;font-style:italic;font-size:0.82em;'>"
+            "Construido a partir de tus notas de lectura — tus palabras, emociones e ideas "
+            "destiladas en un retrato de ti como lector. "
+            "Cada grupo muestra los libros que ya has leído, "
+            "agrupados por los temas y emociones que los conectan."
+            "</div>",
+            unsafe_allow_html=True,
         )
         st.divider()
         st.markdown(clusters_html + footer_html, unsafe_allow_html=True)
