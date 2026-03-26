@@ -269,9 +269,13 @@ CLUSTER_STYLE = {
 # Suggested questions shown as clickable buttons above the chat input
 SUGGESTED_QUESTIONS = [
     "What recurring themes appear most in my reading notes?",
+    "Which books have influenced my thinking the most?",
+    "What emotions come up most often in my notes?",
     "Recommend books similar to what I enjoy most.",
     "What ideas from my past readings might I have forgotten?",
-    "¿Qué libros me recomendarías para seguir explorando mis temas favoritos?",
+    "Is there a pattern in the authors I connect with?",
+    "What should I read next based on my profile?",
+    "What do my notes reveal about how I read?",
 ]
 
 
@@ -559,8 +563,17 @@ def render_chat(rag: RAGEngine):
     """
     st.markdown("## Ask Your Library")
     st.markdown(
-        "Ask anything about your reading history, patterns, or "
-        "get personalized recommendations. Works in English and Spanish."
+    "Ask anything about your reading history, the ideas and emotions in your notes, "
+    "or get personalized recommendations. Your entire literary profile is at your fingertips."
+    )
+    st.markdown(
+        "<div style='border-left:3px solid #B8B89A;padding-left:12px;"
+        "margin-top:8px;color:#6B6B52;font-style:italic;font-size:0.9em;'>"
+        "Pregunta sobre tu historial de lectura, las ideas y emociones "
+        "de tus notas, u obtén recomendaciones personalizadas. "
+        "Todo tu perfil literario está al alcance de tu mano."
+        "</div>",
+        unsafe_allow_html=True,
     )
 
     # ------------------------------------------------------------------
