@@ -593,22 +593,35 @@ def render_chat(rag: RAGEngine):
     if "pending_query" not in st.session_state:
         st.session_state["pending_query"] = ""
 
-    # ------------------------------------------------------------------
+    # -----------------------------------------------------------------
     # SUGGESTED QUESTIONS
-    # ------------------------------------------------------------------
+    # -----------------------------------------------------------------
     st.markdown("<br>", unsafe_allow_html=True)
-    st.caption("Try one of these:")
-
-    suggestion_cols = st.columns(len(SUGGESTED_QUESTIONS))
-
-    for i, question in enumerate(SUGGESTED_QUESTIONS):
-        with suggestion_cols[i]:
-            label = question[:40] + "..." if len(question) > 40 else question
-            if st.button(label, key=f"suggestion_{i}", use_container_width=True):
+    st.markdown(
+        "<div style='font-size:1rem;font-weight:600;color:#2D4A2D;"
+        "font-family:\"Playfair Display\",Georgia,serif;"
+        "margin-bottom:10px;'>Try one of these:</div>",
+        unsafe_allow_html=True,
+    )
+    
+    # 2 rows of 4 buttons each
+    row1 = SUGGESTED_QUESTIONS[:4]
+    row2 = SUGGESTED_QUESTIONS[4:]
+    
+    cols1 = st.columns(4)
+    for i, question in enumerate(row1):
+        with cols1[i]:
+            if st.button(question, key=f"suggestion_{i}", use_container_width=True):
                 st.session_state["pending_query"] = question
-
+    
+    cols2 = st.columns(4)
+    for i, question in enumerate(row2):
+        with cols2[i]:
+            if st.button(question, key=f"suggestion_{i+4}", use_container_width=True):
+                st.session_state["pending_query"] = question
+    
     st.markdown("<br>", unsafe_allow_html=True)
-
+    
     # ------------------------------------------------------------------
     # CHAT HISTORY DISPLAY
     # ------------------------------------------------------------------
