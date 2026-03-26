@@ -726,6 +726,8 @@ def render_add_note():
         "</div>",
         unsafe_allow_html=True,
     )
+    st.divider()
+    
     nm = load_notes_manager()
 
     # ------------------------------------------------------------------
