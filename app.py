@@ -475,7 +475,8 @@ def render_recommendations(artifacts: dict):
         unsafe_allow_html=True,
     )
     st.markdown("<br>", unsafe_allow_html=True)
-
+    st.divider()
+    
     for cluster_key, rec_list in recommendations.items():
         if not rec_list:
             continue
