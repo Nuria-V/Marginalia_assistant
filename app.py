@@ -225,6 +225,25 @@ hr {
     background-color: var(--ochre) !important;
 }
 
+/* --- Date input background --- */
+[data-testid="stDateInput"] input {
+    background-color: var(--cream-dk) !important;
+    color: var(--ink) !important;
+}
+[data-testid="stDateInput"] > div > div {
+    background-color: var(--cream-dk) !important;
+    color: var(--ink) !important;
+    border: 1px solid var(--khaki) !important;
+}
+
+/* --- Dataframe / notes table --- */
+[data-testid="stDataFrame"] {
+    background-color: #FFFFFF !important;
+}
+[data-testid="stDataFrame"] * {
+    color: var(--ink) !important;
+    background-color: #FFFFFF !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
