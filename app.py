@@ -456,8 +456,11 @@ def render_recommendations(artifacts: dict):
 
     st.markdown("## Recommended for You")
     st.markdown(
-        "Books selected by comparing your reader profile against "
-        "9,532 titles — one list per reading cluster."
+        "Below are the top 6 books selected for each of your reading clusters — "
+        "groups of books that share emotional and thematic patterns drawn from your "
+        "personal notes. Each recommendation was chosen by comparing the semantic "
+        "fingerprint of your cluster against 79,000 titles, surfacing the books most "
+        "likely to resonate with how you actually read and what moves you."
     )
     st.markdown("<br>", unsafe_allow_html=True)
 
