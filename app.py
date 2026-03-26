@@ -513,29 +513,30 @@ def render_recommendations(artifacts: dict):
                 st.markdown(
                     f"<div style='"
                     f"border-left:3px solid {style['color']};"
-                    f"padding:10px 14px;"
+                    f"padding:12px 16px;"
                     f"margin-bottom:12px;"
                     f"background:{style['color']}0A;"
                     f"border-radius:0 6px 6px 0;'>"
-
-                    f"<div style='font-weight:600; font-size:0.95em;'>"
+                
+                    f"<div style='font-weight:600; font-size:0.95em; margin-bottom:2px;'>"
                     f"#{rec['rank']} {rec['title']}</div>"
-
-                    f"<div style='color:#888; font-size:0.82em; margin:3px 0;'>"
-                    f"{rec.get('authors', '')}</div>"
-
-                    f"<div style='font-size:0.80em; color:#aaa; margin:6px 0 4px;'>"
-                    f"{str(rec.get('description', ''))[:180]}...</div>"
-
-                    # Similarity score as a visual progress bar
+                
+                    f"<div style='color:{style['color']}; font-size:0.82em; "
+                    f"font-style:italic; margin-bottom:6px;'>"
+                    f"{rec.get('author_names', '')}</div>"
+                
+                    f"<div style='font-size:0.82em; color:#5A5A4A; margin-bottom:8px; "
+                    f"line-height:1.5;'>"
+                    f"{str(rec.get('description', ''))}</div>"
+                
                     f"<div style='display:flex; align-items:center; gap:8px;'>"
                     f"<div style='"
-                    f"height:4px; width:{int(score * 100)}%;"
+                    f"height:3px; width:{int(score * 100)}%;"
                     f"background:{style['color']}; border-radius:2px;'></div>"
-                    f"<span style='font-size:0.75em; color:{style['color']};'>"
+                    f"<span style='font-size:0.73em; color:{style['color']};'>"
                     f"{score:.2f}</span>"
                     f"</div>"
-
+                
                     f"</div>",
                     unsafe_allow_html=True,
                 )
