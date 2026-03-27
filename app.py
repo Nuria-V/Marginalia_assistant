@@ -225,6 +225,13 @@ hr {
     background-color: var(--ochre) !important;
 }
 
+/* --- Numbered lists in chat --- */
+[data-testid="stChatMessage"] ol,
+[data-testid="stChatMessage"] ol li,
+[data-testid="stChatMessage"] ol li::marker {
+    color: var(--ink) !important;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
