@@ -23,7 +23,7 @@ history in natural language.
 
 ## Live Demo
 
-**[Try Marginalia on Streamlit](#)** *(link after deployment)*
+**https://marginalia-literary-assistant.streamlit.app/**
 
 ---
 
@@ -240,7 +240,7 @@ across all 5 reader profile clusters.
 
 ## Author
 
-**Nuria** — Data Science & ML Bootcamp Final Project
+**Nuria Vallés Avalos** — Ironhack Data Science & ML Bootcamp Final Project
 
 ---
 
